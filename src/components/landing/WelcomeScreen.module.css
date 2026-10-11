@@ -1,0 +1,268 @@
+.screen {
+  --ivory: #f5f0e7;
+  --gold: #ddb56a;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100svh;
+  min-height: 760px;
+  overflow: hidden;
+  color: var(--ivory);
+  background: #111310;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.backdrop,
+.shade { position: absolute; z-index: -2; inset: 0; }
+.backdrop {
+  background-image: url("/images/abuja-golden-hour.webp");
+  background-position: center 47%;
+  background-size: cover;
+  transform: scale(1.015);
+  animation: reveal 1.2s ease-out both;
+}
+.shade {
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgb(10 11 9 / 88%) 0%, rgb(12 13 11 / 75%) 24%, rgb(15 16 13 / 48%) 43%, rgb(15 16 13 / 15%) 70%, rgb(15 16 13 / 20%) 100%),
+    linear-gradient(180deg, rgb(12 13 12 / 42%) 0%, transparent 18%, transparent 56%, rgb(10 11 9 / 63%) 100%);
+}
+
+.header {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: grid;
+  height: 88px;
+  grid-template-columns: minmax(235px, 1fr) auto minmax(290px, 1fr);
+  align-items: center;
+  padding: 0 clamp(30px, 4.7vw, 74px);
+  border-bottom: 1px solid rgb(245 240 231 / 17%);
+  background: linear-gradient(180deg, rgb(15 16 14 / 37%), transparent);
+}
+
+.brand {
+  width: fit-content;
+  color: var(--ivory);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -1.7px;
+  line-height: 1;
+  text-decoration: none;
+}
+.brand span { color: var(--gold); }
+
+.desktopNav { display: flex; align-items: center; gap: clamp(20px, 3vw, 48px); }
+.desktopNav a,
+.signIn,
+.getStarted {
+  color: var(--ivory);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.55px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+.desktopNav a { position: relative; padding: 9px 0; }
+.desktopNav a::after { position: absolute; right: 0; bottom: 2px; left: 0; height: 1px; transform: scaleX(0); transform-origin: left; background: var(--gold); content: ""; transition: transform 180ms ease; }
+.desktopNav a:hover { color: #f1d398; }
+.desktopNav a:hover::after { transform: scaleX(1); }
+.headerActions { display: flex; align-items: center; justify-self: end; gap: 17px; }
+.signIn,
+.getStarted { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; gap: 13px; border-radius: 999px; }
+.signIn { min-width: 138px; border: 1px solid rgb(245 240 231 / 65%); background: rgb(16 17 15 / 18%); }
+.signIn:hover { border-color: var(--gold); background: rgb(245 240 231 / 10%); }
+.getStarted { min-width: 181px; padding: 0 22px; color: #171612; background: #f2dfbd; }
+.getStarted:hover { transform: translateY(-2px); background: #ffebc3; }
+.menuToggle,
+.mobileNav { display: none; }
+
+.brand:focus-visible,
+.desktopNav a:focus-visible,
+.signIn:focus-visible,
+.getStarted:focus-visible,
+.menuToggle:focus-visible,
+.mobileNav a:focus-visible,
+.primaryAction:focus-visible,
+.neighborhoodCard:focus-visible,
+.nextNeighborhood:focus-visible { outline: 2px solid #f0cf8b; outline-offset: 4px; }
+
+.hero { position: absolute; inset: 0; pointer-events: none; }
+.heroCopy,
+.locationNote { position: absolute; pointer-events: auto; }
+.heroCopy { top: 15.4%; left: clamp(36px, 4.7vw, 74px); max-width: 620px; animation: riseIn 720ms 100ms both; }
+.kicker { margin: 0 0 20px; color: #eee7d8; font-size: 11px; font-weight: 500; letter-spacing: 4px; }
+.kicker span { padding: 0 4px; color: var(--gold); }
+.heroCopy h1 {
+  margin: 0;
+  color: #fffaf1;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(76px, 7.15vw, 112px);
+  font-weight: 400;
+  letter-spacing: -5.4px;
+  line-height: 0.84;
+  text-shadow: 0 3px 35px rgb(0 0 0 / 22%);
+}
+.heroCopy h1 em { color: #e7bd6b; font-weight: 400; }
+.description { margin: 27px 0 0; color: #f3eee6; font-size: clamp(16px, 1.45vw, 20px); font-weight: 400; line-height: 1.52; text-shadow: 0 2px 12px rgb(0 0 0 / 45%); }
+.actions { display: flex; width: fit-content; flex-direction: column; align-items: center; margin-top: 32px; }
+.primaryAction {
+  display: inline-flex;
+  min-width: 338px;
+  min-height: 59px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 0 24px 0 29px;
+  border: 1px solid rgb(255 225 158 / 90%);
+  border-radius: 999px;
+  color: #17140e;
+  background: linear-gradient(105deg, #e4b95f 0%, #f0d28c 100%);
+  box-shadow: 0 8px 32px rgb(0 0 0 / 20%);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+.primaryAction:hover { transform: translateY(-2px); filter: brightness(1.07); box-shadow: 0 12px 32px rgb(0 0 0 / 28%); }
+.actionNote { margin-top: 12px; color: #efe8d6; font-size: 11px; text-shadow: 0 2px 12px rgb(0 0 0 / 75%); }
+.keyboardHint { display: flex; align-items: center; gap: 13px; margin: 30px 0 0; color: #f5f0e7; font-size: 12px; text-shadow: 0 2px 10px rgb(0 0 0 / 60%); }
+.keys { display: inline-flex; gap: 5px; }
+.keys kbd { display: grid; width: 27px; height: 27px; place-items: center; border: 1px solid rgb(245 240 231 / 68%); border-radius: 4px; background: rgb(12 13 12 / 34%); font-family: inherit; font-size: 11px; }
+.touchHint { display: none; }
+
+.locationNote { top: 17.1%; right: clamp(34px, 4.7vw, 74px); display: flex; min-width: 188px; flex-direction: column; align-items: flex-end; color: #f7f0df; text-shadow: 0 2px 12px rgb(0 0 0 / 55%); animation: riseIn 720ms 250ms both; }
+.locationNote p { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 4px; }
+.locationNote > span { width: 52px; height: 1px; margin: 16px 0 14px; background: #e8c579; }
+.locationNote em { font-family: Georgia, "Times New Roman", serif; font-size: 17px; }
+
+.bottomArea { position: absolute; z-index: 2; right: clamp(35px, 4.7vw, 74px); bottom: 40px; left: clamp(35px, 4vw, 62px); display: flex; align-items: flex-end; justify-content: space-between; gap: 35px; }
+.neighborhoodArea { flex: 0 1 690px; min-width: 0; }
+.neighborhoodCards { display: flex; align-items: center; gap: 17px; }
+.neighborhoodCard {
+  position: relative;
+  width: clamp(130px, 12.7vw, 196px);
+  height: clamp(80px, 7.2vw, 111px);
+  flex: 0 1 196px;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid rgb(245 240 231 / 55%);
+  border-radius: 11px;
+  color: #fffaf1;
+  background: #41463e;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 170ms ease, box-shadow 170ms ease, transform 170ms ease, opacity 170ms ease;
+}
+.neighborhoodCard img { object-fit: cover; transition: transform 320ms ease; }
+.neighborhoodCard:hover img { transform: scale(1.07); }
+.neighborhoodCard:hover { transform: translateY(-3px); }
+.selectedCard { border: 1.5px solid #f2d89c; box-shadow: 0 0 0 1px rgb(242 216 156 / 30%), 0 8px 24px rgb(0 0 0 / 30%); }
+.cardShade { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(0 0 0 / 5%) 12%, rgb(0 0 0 / 65%) 100%); }
+.cardCopy { position: absolute; right: 12px; bottom: 10px; left: 12px; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; text-shadow: 0 1px 6px #000; }
+.cardNumber { font-family: Georgia, "Times New Roman", serif; font-size: 16px; letter-spacing: 1.2px; }
+.cardCopy strong { font-size: 9px; font-weight: 700; letter-spacing: 1.25px; }
+.previewTag { position: absolute; top: 8px; right: 8px; padding: 4px 6px; border: 1px solid rgb(255 255 255 / 48%); border-radius: 999px; color: white; background: rgb(15 16 14 / 52%); font-size: 7px; font-weight: 700; letter-spacing: 0.8px; }
+.nextNeighborhood { display: grid; width: 51px; height: 51px; flex: 0 0 51px; place-items: center; border: 1px solid rgb(245 240 231 / 75%); border-radius: 50%; color: var(--ivory); background: rgb(16 17 15 / 24%); cursor: pointer; transition: color 170ms ease, border-color 170ms ease, background 170ms ease, transform 170ms ease; }
+.nextNeighborhood:hover { transform: translateX(3px); border-color: var(--gold); color: var(--gold); background: rgb(16 17 15 / 58%); }
+.selectionNote { min-height: 13px; margin: 8px 0 0 2px; color: #e6dfd1; font-size: 9px; letter-spacing: 0.2px; text-shadow: 0 2px 10px #000; }
+
+.footer { display: flex; flex: 0 0 auto; align-items: center; gap: clamp(12px, 1.6vw, 25px); padding-bottom: 3px; color: #f0eadf; font-size: 8px; font-weight: 600; letter-spacing: 1.15px; text-shadow: 0 2px 10px #000; white-space: nowrap; }
+.footer i { width: 4px; height: 4px; flex: 0 0 4px; border-radius: 50%; background: var(--gold); }
+
+@keyframes reveal { from { opacity: 0.7; transform: scale(1.05); } to { opacity: 1; transform: scale(1.015); } }
+@keyframes riseIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 1150px) and (min-width: 861px) {
+  .header { grid-template-columns: minmax(190px, 1fr) auto minmax(260px, 1fr); padding-right: 34px; padding-left: 34px; }
+  .desktopNav { gap: 20px; }
+  .signIn { min-width: 100px; }
+  .getStarted { min-width: 140px; }
+  .heroCopy { top: 17%; left: 4.5%; }
+  .heroCopy h1 { font-size: clamp(75px, 8vw, 96px); }
+  .bottomArea { right: 34px; left: 34px; gap: 20px; }
+  .neighborhoodCards { gap: 10px; }
+  .neighborhoodCard { width: 14vw; height: 9vw; }
+  .footer { gap: 10px; font-size: 7px; letter-spacing: 0.8px; }
+}
+
+@media (max-width: 860px) {
+  .screen { min-height: 700px; }
+  .header { height: 74px; grid-template-columns: 1fr auto; padding: 0 27px; }
+  .brand { font-size: 31px; }
+  .desktopNav { display: none; }
+  .headerActions { margin-right: 11px; }
+  .signIn { min-width: 95px; min-height: 41px; font-size: 10px; }
+  .getStarted { min-width: 133px; min-height: 41px; padding: 0 15px; font-size: 10px; }
+  .menuToggle { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid rgb(245 240 231 / 55%); border-radius: 50%; color: var(--ivory); background: rgb(16 17 15 / 36%); cursor: pointer; }
+  .mobileNav { position: absolute; top: 65px; right: 25px; display: flex; min-width: 225px; flex-direction: column; gap: 2px; padding: 9px; border: 1px solid rgb(245 240 231 / 24%); border-radius: 15px; background: rgb(17 19 16 / 94%); box-shadow: 0 18px 36px rgb(0 0 0 / 35%); backdrop-filter: blur(18px); }
+  .mobileNav a { display: flex; min-height: 44px; align-items: center; justify-content: space-between; padding: 0 13px; border-radius: 9px; color: var(--ivory); font-size: 12px; text-decoration: none; }
+  .mobileNav a:hover { background: rgb(245 240 231 / 10%); }
+  .mobileNav .mobileStart { margin-top: 4px; color: #171612; background: #f2dfbd; font-weight: 700; }
+  .heroCopy { top: 16%; left: 5%; max-width: 525px; }
+  .heroCopy h1 { font-size: clamp(76px, 10vw, 99px); }
+  .locationNote { top: 17%; right: 5%; min-width: 0; }
+  .bottomArea { right: 27px; bottom: 24px; left: 27px; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .neighborhoodArea { width: 100%; flex-basis: auto; }
+  .neighborhoodCards { gap: 12px; }
+  .neighborhoodCard { width: min(21vw, 190px); height: min(12vw, 100px); flex: 1 1 0; }
+  .nextNeighborhood { width: 46px; height: 46px; flex-basis: 46px; }
+  .selectionNote { margin-top: 5px; }
+  .footer { align-self: flex-end; gap: 13px; font-size: 7px; }
+}
+
+@media (max-width: 600px) {
+  .screen { display: flex; height: auto; min-height: 100svh; flex-direction: column; overflow: clip; }
+  .backdrop { background-position: 58% center; }
+  .shade { background: linear-gradient(90deg, rgb(10 11 9 / 77%) 0%, rgb(12 13 11 / 55%) 66%, rgb(15 16 13 / 35%) 100%), linear-gradient(180deg, rgb(12 13 12 / 45%) 0%, rgb(12 13 12 / 13%) 38%, rgb(10 11 9 / 74%) 100%); }
+  .header { position: relative; height: 70px; min-height: 70px; padding: 0 19px; }
+  .brand { font-size: 29px; }
+  .headerActions { gap: 0; margin-right: 9px; }
+  .signIn { display: none; }
+  .getStarted { min-width: 112px; min-height: 38px; gap: 7px; padding: 0 11px; font-size: 9px; }
+  .getStarted svg { width: 15px; }
+  .menuToggle { width: 39px; height: 39px; }
+  .mobileNav { top: 62px; right: 14px; }
+  .hero { position: relative; inset: auto; display: flex; min-height: 510px; flex: 1 0 auto; flex-direction: column; justify-content: center; padding: 30px 22px 35px; }
+  .heroCopy { position: relative; top: auto; left: auto; max-width: 100%; }
+  .kicker { margin-bottom: 18px; font-size: 8px; letter-spacing: 2px; }
+  .heroCopy h1 { font-size: clamp(66px, 17vw, 91px); letter-spacing: -4px; line-height: 0.88; }
+  .description { margin-top: 20px; font-size: 15px; line-height: 1.55; }
+  .actions { align-items: flex-start; margin-top: 24px; }
+  .primaryAction { width: min(100%, 346px); min-width: 0; min-height: 56px; gap: 12px; padding: 0 18px; font-size: 12px; }
+  .actionNote { margin-left: 8px; font-size: 10px; }
+  .keyboardHint { display: none; }
+  .touchHint { display: block; margin: 18px 0 0 8px; color: #e8dfcd; font-size: 11px; text-shadow: 0 2px 10px #000; }
+  .locationNote { display: none; }
+  .bottomArea { position: relative; right: auto; bottom: auto; left: auto; display: block; padding: 0 0 13px; }
+  .neighborhoodArea { width: 100%; }
+  .neighborhoodCards { overflow-x: auto; overscroll-behavior-x: contain; gap: 10px; padding: 0 18px 7px; scrollbar-width: none; scroll-snap-type: x mandatory; }
+  .neighborhoodCards::-webkit-scrollbar { display: none; }
+  .neighborhoodCard { width: min(66vw, 230px); height: 94px; min-width: min(66vw, 230px); flex: 0 0 min(66vw, 230px); scroll-snap-align: start; }
+  .nextNeighborhood { position: sticky; right: 0; width: 43px; height: 43px; flex: 0 0 43px; margin-left: 1px; background: rgb(16 17 15 / 70%); }
+  .cardCopy { bottom: 9px; }
+  .cardNumber { font-size: 15px; }
+  .selectionNote { min-height: 12px; margin: 4px 20px 0; font-size: 9px; }
+  .footer { min-height: 44px; justify-content: center; gap: 10px; padding: 0 8px; font-size: 6px; letter-spacing: 0.65px; }
+  .footer i { width: 3px; height: 3px; flex-basis: 3px; }
+}
+
+@media (max-width: 360px) {
+  .header { padding: 0 13px; }
+  .brand { font-size: 26px; }
+  .headerActions { margin-right: 7px; }
+  .getStarted { min-width: 99px; font-size: 8px; }
+  .menuToggle { width: 36px; height: 36px; }
+  .hero { min-height: 475px; padding-right: 17px; padding-left: 17px; }
+  .kicker { letter-spacing: 1.4px; }
+  .heroCopy h1 { font-size: 64px; }
+  .footer { gap: 7px; font-size: 5.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}
